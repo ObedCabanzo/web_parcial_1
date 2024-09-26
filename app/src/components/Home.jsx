@@ -2,14 +2,15 @@ import { useState } from "react";
 import cyclingBg from "../images/cycling.avif";
 import runningBg from "../images/running.avif";
 import swimmingBg from "../images/swimming.avif";
-import userBg from "../images/user_bg.png"
+import userBg from "../images/user_bg.png";
 import { FaRunning } from "react-icons/fa";
+import { GiCycling } from "react-icons/gi";
+import { FaSwimmer } from "react-icons/fa";
 
 export default function Home(props) {
-
-  const [bestCyclingTime, setBestCyclingTime ] = useState(1.2)
-  const [bestRunningTime, setBestRunningTime ] = useState(1.2)
-  const [bestSwimmingTime, setBestSwimmingTime ] = useState(1.2)
+  const [bestCyclingTime, setBestCyclingTime] = useState(1.2);
+  const [bestRunningTime, setBestRunningTime] = useState(1.2);
+  const [bestSwimmingTime, setBestSwimmingTime] = useState(1.2);
 
   const userData = {
     name: "Camilo escobar",
@@ -235,15 +236,17 @@ export default function Home(props) {
           }}
         />
         <h1 className="text-2xl text-white font-bold w-20">{userData.name}</h1>
-        <div className="flex ">
-            <FaRunning />
-            <p className="text-2xl text-white font-bold">{bestRunningTime}</p>
+        <div className="flex items-center gap-2">
+          <FaRunning color="white" />
+          <p className="text-2xl text-white font-bold">{bestRunningTime}</p>
         </div>
-        <div className="flex ">
-            <p  className="text-2xl text-white font-bold">{bestCyclingTime}</p>
+        <div className="flex items-center gap-2">
+          <GiCycling color="white" />
+          <p className="text-2xl text-white font-bold">{bestCyclingTime}</p>
         </div>
-        <div className="flex ">
-            <p  className="text-2xl text-white font-bold">{bestSwimmingTime}</p>
+        <div className="flex items-center gap-2">
+          <FaSwimmer color="white" />
+          <p className="text-2xl text-white font-bold">{bestSwimmingTime}</p>
         </div>
       </footer>
     </div>
