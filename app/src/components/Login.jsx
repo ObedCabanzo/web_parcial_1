@@ -1,5 +1,6 @@
 import { useState } from "react";
 import background from "../images/bg.avif";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -13,12 +14,17 @@ export default function Login() {
     setUsername(e.target.value);
   };
 
+  const navigate = useNavigate();
+
   return (
-    <div className="flex justify-center items-center w-screen h-screen" style={{
-        backgroundImage: `url(${background})`, 
+    <div
+      className="flex justify-center items-center w-screen h-screen"
+      style={{
+        backgroundImage: `url(${background})`,
         backgroundRepeat: "no-repeat",
-        backgroundSize: "cover"
-    }}>
+        backgroundSize: "cover",
+      }}
+    >
       <div className="flex flex-col gap-4 p-8 bg-white w-96 ">
         <h1 className="text-lg font-bold">Login</h1>
         <div className="flex flex-col gap-1">
@@ -36,7 +42,13 @@ export default function Login() {
             type="password"
           ></input>
         </div>
-        <button className="px-8 py-2 bg-blue-400 w-2/3">Log in</button>
+
+        <button
+          className="px-8 py-2 bg-blue-400 w-2/3"
+          onClick={navigate("/home")}
+        >
+          Log in
+        </button>
       </div>
     </div>
   );
