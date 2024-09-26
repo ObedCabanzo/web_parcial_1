@@ -159,21 +159,26 @@ export default function Home(props) {
           <h1 className="text-2xl font-bold">Cycling</h1>
           <div className="grid grid-cols-2 gap-1">
             {cyclingData.map((data, index) => {
+              let isDisplayed = false;
               return (
-                <div
-                  className="flex flex-col gap-2 p-8 text-white max-w-[15vw] cursor-pointer"
-                  style={{
-                    backgroundImage: `url(${cyclingBg})`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                  }}
-                >
-                  <h1 className="text-xl font-bold">Cycling Session</h1>
-                  <p>Recorrido alrededor de {data.place}</p>
-                  <p>
-                    {data.num}k {data.time}h{" "}
-                  </p>
-                </div>
+                <>
+                  <div
+                    className="flex flex-col gap-2 p-8 text-white max-w-[15vw] cursor-pointer"
+                    style={{
+                      backgroundImage: `url(${cyclingBg})`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "cover",
+                    }}
+                    onClick={!isDisplayed}
+                  >
+                    <h1 className="text-xl font-bold">Cycling Session</h1>
+                    <p>Recorrido alrededor de {data.place}</p>
+                    <p>
+                      {data.num}k {data.time}h{" "}
+                    </p>
+                  </div>
+                  
+                </>
               );
             })}
           </div>
