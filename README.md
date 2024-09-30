@@ -9,6 +9,8 @@
   - Tailwind CSS: Para estilizado rápido.
   - react-router-dom: Para la gestión del enrutamiento en la aplicación.
   - i18next: Para la implementación de la internacionalización, permitiendo soportar múltiples idiomas (ingles y español).
+  - react-icons: Para el manejo de iconos
+    
 2. Ejecución del proyecto
   
   Posterior a ello se debe realizar la ejecución del proyecto con el comando "npm start"
