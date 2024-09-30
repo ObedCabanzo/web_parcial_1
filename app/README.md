@@ -1,70 +1,175 @@
-# Getting Started with Create React App
+# Ejecución del Parcial y Reporte de Decisiones
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Paso a Paso para la Ejecución
 
-## Available Scripts
+1. Instalación de Dependencias
 
-In the project directory, you can run:
+  Se debe ejecutar el comando "npm install" ubicado en la carpeta principal del proyecto denominada "./app", se instalaron las siguientes dependencias:
 
-### `npm start`
+  - Tailwind CSS: Para estilizado rápido.
+  - react-router-dom: Para la gestión del enrutamiento en la aplicación.
+  - i18next: Para la implementación de la internacionalización, permitiendo soportar múltiples idiomas (ingles y español).
+2. Ejecución del proyecto
+  
+  Posterior a ello se debe realizar la ejecución del proyecto con el comando "npm start"
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Desarrollo de Componentes
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Se desarrollaron dos componentes principales: Login y Home.
 
-### `npm test`
+### Componente Login
+  Este componente gestiona el inicio de sesión del usuario, utilizando useState para manejar el estado de los campos de entrada. Aquí se implementó la validación de email y contraseña. Además, se utilizó el hook de traducción useTranslation para soportar la internacionalización.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  ```javascript annotate
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import background from "../images/bg.avif";
+import { FaEye } from "react-icons/fa";
 
-### `npm run build`
+export default function Login() {
+  const { t, i18n } = useTranslation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  // Funciones para manejar cambios en los campos de entrada
+  // Función para manejar el inicio de sesión
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Componente Home
+  Este componente es la página principal donde se muestran las actividades (ciclismo, correr y nadar). También utiliza useTranslation y useState para manejar el estado de los datos de las actividades. Los datos se obtienen de fuentes externas utilizando fetch.
 
-### `npm run eject`
+  ```javascript annotate
+import { useState, useEffect } from "react";
+import cyclingBg from "../images/cycling.avif";
+import runningBg from "../images/running.avif";
+import swimmingBg from "../images/swimming.avif";
+import { FaRunning } from "react-icons/fa";
+import { GiCycling } from "react-icons/gi";
+import { FaSwimmer } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+export default function Home(props) {
+  const { t, i18n } = useTranslation(); // Hook de traducción
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  const handleLanguageChange = (language) => {
+    i18n.changeLanguage(language);
+  };
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  const [cyclingData, setCyclingData] = useState([]);
+  const [runningData, setRunningData] = useState([]);
+  const [swimmingData, setSwimmingData] = useState([]);
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+useEffect(() => {
+    // Fetch de datos externos
+  }, []);
 
-## Learn More
+  // Renderizado del componente
+}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  ```
+## Estilizado con Tailwind CSS
 
-### Code Splitting
+  Se utilizó Tailwind CSS para estilizar los componentes, permitiendo un diseño eficaz con clases utilitarias. Esto facilitó la creación de diseños complejos sin necesidad de escribir CSS personalizado.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Enrutamiento con react-router-dom
+  
+  Se configuró el enrutamiento de la aplicación utilizando react-router-dom, permitiendo la navegación entre el componente Login y Home. Esto mejora la experiencia del usuario al proporcionar una interfaz intuitiva.
 
-### Analyzing the Bundle Size
+  ```javascript annotate
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+const router = createBrowserRouter([
+  
+  {
+    path: "/",
+    element: <Login/>,
+  },
+  {
+    path: "/home",
+    element: <Home/>,
+  }
+]);
 
-### Making a Progressive Web App
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Internacionalización con i18next
+  Se implementó la traducción de textos utilizando el hook useTranslation, lo que permite cambiar el idioma de la aplicación dinámicamente. Se definieron los recursos de traducción en el archivo i18n.js.
 
-### Deployment
+  ```javascript annotate
+// src/i18n.js
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+// Traducciones
+const resources = {
+  en: {
+    translation: {
+      "Iniciar sesión": "Login",
+      "Correo electrónico": "Email",
+      "Contraseña": "Password",
+      "Iniciar sesión": "Log in",
+      "El formato del correo no es válido": "The email format is not valid",
+      "La contraseña debe tener 8 caracteres": "The password must have 8 characters",
+      "Ciclismo": "Cycling",
+      "Correr": "Running",
+      "Nadar": "Swimming",
+      "Cerrar": "Close",
+      "Sesión de Ciclismo": "Cycling Session",
+        "Sesión de Correr": "Running Session",
+        "Sesión de Nadar": "Swimming Session",
+      "around": "around",
+      "minutes": "minutes",
+      "horas": "hours",
+      "Recorrido alrededor de": "Tour around"
+    },
+  },
+  es: {
+    translation: {
+      "Login": "Iniciar sesión",
+      "Email": "Correo electrónico",
+      "Password": "Contraseña",
+      "Log in": "Iniciar sesión",
+      "The email format is not valid": "El formato del correo no es válido",
+      "The password must have 8 characters": "La contraseña debe tener 8 caracteres",
+      "Cycling": "Ciclismo",
+      "Running": "Correr",
+      "Swimming": "Nadar",
+      "Close": "Cerrar",
+      "Cycling Session": "Sesión de Ciclismo",
+      "Running Session": "Sesión de Correr",
+      "Swimming Session": "Sesión de Nadar",
+      "around": "alrededor de",
+      "minutes": "minutos",
+      "hours": "horas",
+      "Tour around": "Recorrido alrededor de"
+      
+    },
+  },
+};
 
-### `npm run build` fails to minify
+i18n.use(initReactI18next).init({
+  resources,
+  lng: "es", // Lenguaje por defecto
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default i18n;
+
+  ```
