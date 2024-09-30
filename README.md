@@ -4,7 +4,7 @@
 
 1. Instalación de Dependencias
 
-  Se debe ejecutar el comando "npm install" ubicado en la carpeta principal del proyecto denominada "./app", se instalaron las siguientes dependencias:
+  Se debe ejecutar el comando "npm install" ubicandose en la carpeta principal del proyecto denominada "./app", se instalaron las siguientes dependencias:
 
   - Tailwind CSS: Para estilizado rápido.
   - react-router-dom: Para la gestión del enrutamiento en la aplicación.
